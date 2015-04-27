@@ -1,4 +1,4 @@
-# Duplicates
+# Duplicates [![Build Status](https://travis-ci.org/msn0/duplicates.svg?branch=master)](http://travis-ci.org/msn0/duplicates)
 
 > Find duplicate files
 
