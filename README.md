@@ -1,4 +1,4 @@
-# duplicates
+# Duplicates
 
 > Find duplicate files
 
@@ -26,7 +26,7 @@ duplicates.find("/path", function (data) {
 
 ## Output
 
-```json
+```js
 {
   e9b286d11c6f6d1be4c2dcf0fee964c1fdb0a8e2:
     [ 'test/fixtures/file1', 'test/fixtures/file1.duplicate' ],
