@@ -20,4 +20,6 @@ if (!path) {
   process.exit(1);
 }
 
-duplicates.find(path);
+duplicates.find(path, function (data) {
+  console.log(data);
+});

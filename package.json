@@ -8,6 +8,9 @@
     "duplicates",
     "duplicate files"
   ],
+  "scripts": {
+    "test": "mocha"
+  },
   "author": "Michał Jezierski",
   "license": "MIT",
   "bin": {
@@ -17,6 +20,7 @@
   "dependencies": {
     "hash-file": "^1.0.0",
     "meow": "^3.1.0",
+    "sinon": "^1.14.1",
     "walk": "^2.3.9"
   }
 }

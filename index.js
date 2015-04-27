@@ -1,28 +1,22 @@
 'use strict';
 
-var fs = require('fs');
 var path = require('path');
 var hashFile = require('hash-file');
 var walk = require('walk');
-var walker;
-var files = [];
-var hashes = [];
-var duplicates = [];
+var walker, files = [], hashes = [], duplicates = [];
 
 function fileHandler(root, fileStat, next) {
-  fs.readFile(path.resolve(root, fileStat.name), function () {
-    var file = path.normalize(root + path.sep + fileStat.name);
-    var hash = hashFile(file);
-    if (hashes.indexOf(hash) !== -1 && duplicates.indexOf(file) === -1) {
-      duplicates.push(hash);
-    }
-    files.push({
-      path: file,
-      hash: hash
-    });
-    hashes.push(hash);
-    next();
+  var file = path.normalize(root + path.sep + fileStat.name);
+  var hash = hashFile(file);
+  if (hashes.indexOf(hash) !== -1 && duplicates.indexOf(file) === -1) {
+    duplicates.push(hash);
+  }
+  files.push({
+    path: file,
+    hash: hash
   });
+  hashes.push(hash);
+  next();
 }
 
 function getDuplicates(hash) {
@@ -34,18 +28,25 @@ function getDuplicates(hash) {
 }
 
 function endHandler(cb) {
-  for (var i = 0; i < duplicates.length; i++) {
-    console.log('\n' + getDuplicates(duplicates[i]).join('\n'));
-  }
+  var temp = {};
+  duplicates.forEach(function (file) {
+    temp[file] = getDuplicates(file);
+  });
+
   if (typeof cb === 'function') {
-    cb();
+    cb(temp);
   }
 }
 
 module.exports = {
   find: function (path, cb) {
-    walker = walk.walk(path, {followLinks: false});
-    walker.on("file", fileHandler);
-    walker.on("end", endHandler.bind(this, cb));
+    var options = {
+      followLinks: false,
+      listeners: {
+        file: fileHandler,
+        end: endHandler.bind(this, cb)
+      }
+    };
+    walker = walk.walkSync(path, options);
   }
 };
