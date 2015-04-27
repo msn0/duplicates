@@ -1,0 +1,22 @@
+{
+  "name": "duplicates",
+  "version": "1.0.0",
+  "description": "Find duplicate files",
+  "main": "index.js",
+  "keywords": [
+    "duplicate",
+    "duplicates",
+    "duplicate files"
+  ],
+  "author": "Michał Jezierski",
+  "license": "MIT",
+  "bin": {
+    "duplicates": "cli.js"
+  },
+  "repository": "msn0/duplicates",
+  "dependencies": {
+    "hash-file": "^1.0.0",
+    "meow": "^3.1.0",
+    "walk": "^2.3.9"
+  }
+}
