@@ -1,6 +1,6 @@
 {
   "name": "duplicates",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Find duplicate files",
   "main": "index.js",
   "keywords": [
