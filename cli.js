@@ -21,5 +21,5 @@ if (!path) {
 }
 
 duplicates.find(path, function (data) {
-  console.log(data);
+  console.log(JSON.stringify(data));
 });
